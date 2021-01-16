@@ -1,1 +1,1 @@
-# btcli
+# btcli - Simple command line Bitcoin explorer
