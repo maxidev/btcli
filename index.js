@@ -71,8 +71,12 @@ async function main () {
         console.log("Value:", chalk.blue(utxo.value / 100000000 + " BTC "));
     })
 
-    if(history)
-      console.log("History: ", history);
+    if(history){
+      console.log("Transaction History")
+      history.forEach(h=> {
+        log("TX ID:", terminalLink(h.tx_hash, `https://blockchair.com/bitcoin/transaction/${h.tx_hash}`));
+      })
+    }
 
     await client.close()
     
