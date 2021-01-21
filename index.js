@@ -69,26 +69,29 @@ async function main () {
 
     let script = bitcoin.address.toOutputScript(addr)
     
-    //log(bitcoin.address.fromBech32(addr));
-    log(script.toString('hex'));
-    log(bitcoin.script.toASM(script));
-    log(bitcoin.script.decompile(script));
-    
-    return;
-
     let hash = bitcoin.crypto.sha256(script)
     let reversedHash = new Buffer.from(hash.reverse())
 
     let rScriptHash = reversedHash.toString('hex');
 
-    log("Address: ",  terminalLink(addr, `https://blockchair.com/bitcoin/address/${addr}`));
-    log("Redeem Script: ", script.toString('hex'));
-    log(script)
+    let decompiledScript = bitcoin.script.decompile(script);
+    
+    log("Address: ",  chalk.magentaBright(terminalLink(addr, `https://blockchair.com/bitcoin/address/${addr}`)));
+    
+    if(decompiledScript[0] == 0)
+      log("Address Type: ", chalk.white("SegWit (Bech32/P2WSH)"));
+    else if(addr[0] == 1)
+      log("Address Type: ", chalk.white("Legacy (P2PKH)"));
+    else if(addr[0] == 3)
+      log("Address Type: ", chalk.white("P2SH / Nested Segwit"));
+
+    log("ScriptHash: ", chalk.blue(bitcoin.script.toASM(script)));
 
     if(options.verbose){
+      
       let arr = [...script];
-      console.log("Script: ", arr[2].toString(16));
-      console.log("Script: ", script.toString('hex'));
+      //console.log("Script: ", arr[2].toString(16));
+      //console.log("Script: ", script.toString('hex'));
       console.log("Electrum reversed script_hash: ", rScriptHash);
     }
 
@@ -99,7 +102,7 @@ async function main () {
     let btcBalance = balance.confirmed/BTC_UNIT;
     let btcPrice = (await axios.get('https://blockchain.info/q/24hrprice')).data;
     
-    log('Balance:', chalk.green(btcBalance + `BTC (~ ${(btcBalance*btcPrice).toFixed(2)} USD)`));
+    log('Balance:', chalk.green(btcBalance + ` BTC (~ ${(btcBalance*btcPrice).toFixed(2)} USD)`));
     
     if(options.verbose){
 
@@ -112,7 +115,7 @@ async function main () {
 
       log("Transaction History")
       let history = await client.blockchain_scripthash_getHistory(rScriptHash);
-      history.forEach(h=> {
+      history.forEach(h => {
         log("TX ID:", terminalLink(h.tx_hash, `https://blockchair.com/bitcoin/transaction/${h.tx_hash}`));
       })
     }
