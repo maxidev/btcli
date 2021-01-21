@@ -79,7 +79,7 @@ async function main () {
     log("Address: ",  chalk.magentaBright(terminalLink(addr, `https://blockchair.com/bitcoin/address/${addr}`)));
     
     if(decompiledScript[0] == 0)
-      log("Address Type: ", chalk.white("SegWit (Bech32/P2WSH)"));
+      log("Address Type: ", chalk.white("SegWit (Bech32/P2WPKH)"));
     else if(addr[0] == 1)
       log("Address Type: ", chalk.white("Legacy (P2PKH)"));
     else if(addr[0] == 3)
