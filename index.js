@@ -94,9 +94,13 @@ async function main () {
       //console.log("Script: ", script.toString('hex'));
       console.log("Electrum reversed script_hash: ", rScriptHash);
     }
+    
 
     let balance = await client.blockchain_scripthash_getBalance(rScriptHash)
     
+    // log((await client.blockchain_transaction_get("0da8900b3b418763599abd4f622da3fe9113704cfbeba5c90830e6e57b1091e0", true)));
+    // return;
+
     const BTC_UNIT = 100000000;
     
     let btcBalance = balance.confirmed/BTC_UNIT;
