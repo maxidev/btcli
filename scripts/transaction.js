@@ -18,6 +18,7 @@ async function transaction(client, options) {
     if(options.verbose){
 
     }else{
+      spinner.clear();
       log("ID: ", chalk.blue(terminalLink(txid, `https://blockchair.com/bitcoin/transaction/${txid}`)));
       log("Block Hash: ", chalk.green(terminalLink(blockhash, `https://blockchair.com/bitcoin/block/${blockhash}`)));
       log("Confirmations: ", chalk.green(confirmations));
@@ -25,8 +26,8 @@ async function transaction(client, options) {
       const dateObject = new Date(time*1000)
       const humanDateFormat = dateObject.toLocaleString() //2019-12-9 10:30:15
       log("Timestamp: ", chalk.green(time + ` (${humanDateFormat} UTC)`));
+      //spinner.succeed();
       spinner.stop();
-      spinner.clear();
     }
   } catch (err) {
     console.log(err);
