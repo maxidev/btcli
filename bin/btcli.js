@@ -43,6 +43,9 @@ program
   .option('-tx, --transaction <tx>', 'tx')
   .parse();
 
+/*
+  Help if no commands
+*/
 if (Object.keys(program.opts()).length == 0) {
   program.help();
 }
