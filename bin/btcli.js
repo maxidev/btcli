@@ -33,50 +33,44 @@ const OP_CHECKSIG = 'ac';
 const OP_CHECKMULTISIG = 'ae';
 const OP_HASH160 = 'a9';
 
+async function connect() {
+  const client = new ElectrumClient(
+    'electrum1.baremetalpittsburgh.net',
+    50002,
+    'ssl'
+  );
 
-program
-  .description('BTCli - A simple command line Bitcoin explorer')
-  .version('0.0.1', '-v, --vers', 'output the current version')
-  .option('-addr, --address <addr>', 'Bitcoin Address to check legacy/bech32 supported')
-  //.option('-i, --history ', 'Get',)
-  .option('-V, --verbose', 'verbose output')
-  .option('-tx, --transaction <tx>', 'tx')
-  .parse();
+  await client.connect();
 
-/*
-  Help if no commands
-*/
-if (Object.keys(program.opts()).length == 0) {
-  program.help();
+  return client;
 }
 
 async function main() {
-  const options = program.opts();
-  const optionsKeys = Object.keys(options);
+  program
+    .description('BTCli - A simple command line Bitcoin explorer')
+    .version('0.0.1', '-v, --vers', 'output the current version');
 
   try {
-    const client = new ElectrumClient(
-      'electrum1.baremetalpittsburgh.net',
-      50002,
-      'ssl'
-    );
-
-    await client.connect();
+    const client = await connect();
 
     console.log('-------------------------');
 
-    switch (true) {
-      case (optionsKeys.includes('address')):
-        await address(client, options);
-        break;
+    program
+      .command('addr <address>')
+      .description('Bitcoin Address to check legacy/bech32 supported')
+      .option('-V, --verbose', 'verbose output')
+      .action(async (_address, options) => {
+        await address(client, _address, options);
+      });
 
-      case (optionsKeys.includes('transaction')):
-        await transaction(client, options);
-        break;
+    program
+      .command('tx <transaction>')
+      .description('Bitcoin transaction')
+      .action(async (tx, options) => {
+        await transaction(client, tx, options);
+      });
 
-      default:
-        break;
-    }
+    await program.parseAsync(process.argv);
 
     await client.close();
   } catch (err) {
