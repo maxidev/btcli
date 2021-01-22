@@ -53,8 +53,9 @@ async function address(client, options) {
     log('Balance:', chalk.green(btcBalance + ` BTC (~ ${(btcBalance * btcPrice).toFixed(2)} USD)`));
 
     if (options.verbose) {
-
+      spinner.start();
       let UTXOs = await client.blockchain_scripthash_listunspent(rScriptHash);
+      spinner.clear();
       log(`UTXOs (${UTXOs.length})`);
       UTXOs.forEach(utxo => {
         log("Hash: ", terminalLink(utxo.tx_hash, `https://blockchair.com/bitcoin/transaction/${utxo.tx_hash}`));
@@ -63,9 +64,11 @@ async function address(client, options) {
 
       log("Transaction History")
       let history = await client.blockchain_scripthash_getHistory(rScriptHash);
+      spinner.clear();
       history.forEach(h => {
         log("TX ID:", terminalLink(h.tx_hash, `https://blockchair.com/bitcoin/transaction/${h.tx_hash}`));
       })
+      spinner.stop();
     }
   } catch (err) {
     console.log(err);
