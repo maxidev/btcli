@@ -6,9 +6,9 @@ const ora = require('ora');
 
 async function address(client, options) {
   try {
+
     const spinner = ora();
     spinner.spinner = "squareCorners";
-    
 
     let addr = options.address;
 
