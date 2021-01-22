@@ -2,9 +2,14 @@ const axios = require('axios');
 const bitcoin = require('bitcoinjs-lib');
 const chalk = require('chalk');
 const terminalLink = require('terminal-link');
+const ora = require('ora');
 
 async function address(client, options) {
   try {
+    const spinner = ora();
+    spinner.spinner = "squareCorners";
+    
+
     let addr = options.address;
 
     let script = bitcoin.address.toOutputScript(addr);
@@ -34,14 +39,17 @@ async function address(client, options) {
       console.log("Electrum reversed script_hash: ", rScriptHash);
     }
 
-
+    spinner.start();
     let balance = await client.blockchain_scripthash_getBalance(rScriptHash)
 
     const BTC_UNIT = 100000000;
 
     let btcBalance = balance.confirmed / BTC_UNIT;
     let btcPrice = (await axios.get('https://blockchain.info/q/24hrprice')).data;
-
+    
+    spinner.stop();
+    spinner.clear();
+    
     log('Balance:', chalk.green(btcBalance + ` BTC (~ ${(btcBalance * btcPrice).toFixed(2)} USD)`));
 
     if (options.verbose) {
