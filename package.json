@@ -2,9 +2,11 @@
   "name": "btcli",
   "version": "0.0.1",
   "description": "A simple command line Bitcoin explorer",
-  "main": "index.js",
+  "bin": {
+    "btcli": "./bin/btcli.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "npm link btcli"
   },
   "repository": {
     "type": "git",
