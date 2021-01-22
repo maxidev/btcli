@@ -4,15 +4,14 @@ const chalk = require('chalk');
 const terminalLink = require('terminal-link');
 const ora = require('ora');
 
-async function address(client, options) {
+async function address(client, address, options) {
   try {
 
     const spinner = ora();
     spinner.spinner = "squareCorners";
 
-    let addr = options.address;
 
-    let script = bitcoin.address.toOutputScript(addr);
+    let script = bitcoin.address.toOutputScript(address);
 
     let hash = bitcoin.crypto.sha256(script);
 
@@ -22,13 +21,13 @@ async function address(client, options) {
 
     let decompiledScript = bitcoin.script.decompile(script);
 
-    log("Address: ", chalk.magentaBright(terminalLink(addr, `https://blockchair.com/bitcoin/address/${addr}`)));
+    log("Address: ", chalk.magentaBright(terminalLink(address, `https://blockchair.com/bitcoin/address/${address}`)));
 
     if (decompiledScript[0] == 0)
       log("Address Type: ", chalk.white("SegWit (Bech32/P2WPKH)"));
-    else if (addr[0] == 1)
+    else if (address[0] == 1)
       log("Address Type: ", chalk.white("Legacy (P2PKH)"));
-    else if (addr[0] == 3)
+    else if (address[0] == 3)
       log("Address Type: ", chalk.white("P2SH / Nested Segwit"));
 
     log("ScriptHash: ", chalk.blue(bitcoin.script.toASM(script)));
