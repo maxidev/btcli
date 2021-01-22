@@ -1,9 +1,16 @@
 const chalk = require('chalk');
 const terminalLink = require('terminal-link');
+const ora = require('ora');
 
 async function transaction(client, options) {
   try {
+    
+    const spinner = ora();
+    spinner.spinner = "squareCorners";
+    
     const transaction = options.transaction;
+    
+    spinner.start();
     let tx  = await client.blockchain_transaction_get(transaction, true);
 
     let { txid, size, vin, vout, blockhash, confirmations, time } = tx;
@@ -18,8 +25,9 @@ async function transaction(client, options) {
       const dateObject = new Date(time*1000)
       const humanDateFormat = dateObject.toLocaleString() //2019-12-9 10:30:15
       log("Timestamp: ", chalk.green(time + ` (${humanDateFormat} UTC)`));
+      spinner.stop();
+      spinner.clear();
     }
-    
   } catch (err) {
     console.log(err);
   }
