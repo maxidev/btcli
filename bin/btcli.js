@@ -40,9 +40,9 @@ async function connect() {
   let servers = JSON.parse(fs.readFileSync('./servers.json', 'utf-8'));
 
   const client = new ElectrumClient(
-    servers.BLOCKSTREAM.url,
-    servers.BLOCKSTREAM.port,
-    servers.BLOCKSTREAM.proto
+    servers.BAREMETALPITTSBURGH.url,
+    servers.BAREMETALPITTSBURGH.port,
+    servers.BAREMETALPITTSBURGH.proto
   );//TODO: add a method to try to connect to another server if first one fails
 
   await client.connect();
@@ -71,6 +71,7 @@ async function main() {
     program
       .command('tx <transaction>')
       .description('Bitcoin transaction')
+      .option('-V, --verbose', 'verbose output')
       .action(async (tx, options) => {
         await transaction(client, tx, options);
       });

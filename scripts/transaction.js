@@ -13,16 +13,30 @@ async function transaction(client, transaction, options) {
 
     let { txid, size, vin, vout, blockhash, confirmations, time } = tx;
 
-    spinner.clear();
-    log("ID: ", chalk.blue(terminalLink(txid, `https://blockchair.com/bitcoin/transaction/${txid}`)));
-    log("Block Hash: ", chalk.green(terminalLink(blockhash, `https://blockchair.com/bitcoin/block/${blockhash}`)));
-    log("Confirmations: ", chalk.green(confirmations));
-    log("Size: ", chalk.green(size + " bytes"))
-    const dateObject = new Date(time * 1000)
-    const humanDateFormat = dateObject.toLocaleString() //2019-12-9 10:30:15
-    log("Timestamp: ", chalk.green(time + ` (${humanDateFormat} UTC)`));
-    //spinner.succeed();
-    spinner.stop();
+    if(options.verbose){
+      spinner.clear();
+      log("ID: ", chalk.blue(terminalLink(txid, `https://blockchair.com/bitcoin/transaction/${txid}`)));
+      log("Block Hash: ", chalk.green(terminalLink(blockhash, `https://blockchair.com/bitcoin/block/${blockhash}`)));
+      log("Confirmations: ", chalk.green(confirmations));
+      log("Size: ", chalk.green(size + " bytes"))
+      const dateObject = new Date(time * 1000)
+      const humanDateFormat = dateObject.toLocaleString() //2019-12-9 10:30:15
+      log("Timestamp: ", chalk.green(time + ` (${humanDateFormat} UTC)`));
+      log("Inputs:", vin);
+      log("Outputs:", vout)
+      spinner.stop();
+    }else{
+      spinner.clear();
+      log("ID: ", chalk.blue(terminalLink(txid, `https://blockchair.com/bitcoin/transaction/${txid}`)));
+      log("Block Hash: ", chalk.green(terminalLink(blockhash, `https://blockchair.com/bitcoin/block/${blockhash}`)));
+      log("Confirmations: ", chalk.green(confirmations));
+      log("Size: ", chalk.green(size + " bytes"))
+      const dateObject = new Date(time * 1000)
+      const humanDateFormat = dateObject.toLocaleString() //2019-12-9 10:30:15
+      log("Timestamp: ", chalk.green(time + ` (${humanDateFormat} UTC)`));
+      spinner.stop();
+    }
+
   } catch (err) {
     console.log(err);
   }

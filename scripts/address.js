@@ -52,9 +52,15 @@ async function address(client, address, options) {
     let balance = await client.blockchain_scripthash_getBalance(rScriptHash)
 
     const BTC_UNIT = 100000000;
+    let btcPrice = 0;
 
     let btcBalance = balance.confirmed / BTC_UNIT;
-    let btcPrice = (await axios.get('https://blockchain.info/q/24hrprice')).data;
+
+    /*
+      Query for USD balance only if balance var shows value greather than 0
+    */
+    if(balance.confirmed > 0)
+      btcPrice = (await axios.get('https://blockchain.info/q/24hrprice')).data;
 
     spinner.stop();
     spinner.clear();
