@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
 const { program } = require('commander');
 const address = require('../scripts/address');
-const ElectrumClient = require('@codewarriorr/electrum-client-js');
 const transaction = require('../scripts/transaction');
 
 global.log = console.log;
@@ -34,38 +32,18 @@ const OP_CHECKSIG = 'ac';
 const OP_CHECKMULTISIG = 'ae';
 const OP_HASH160 = 'a9';
 
-async function connect() {
-
-  // Public Electrum server list: https://1209k.com/bitcoin-eye/ele.php?chain=btc
-  let servers = JSON.parse(fs.readFileSync('./servers.json', 'utf-8'));
-
-  const client = new ElectrumClient(
-    servers.BAREMETALPITTSBURGH.url,
-    servers.BAREMETALPITTSBURGH.port,
-    servers.BAREMETALPITTSBURGH.proto
-  );//TODO: add a method to try to connect to another server if first one fails
-
-  await client.connect();
-
-  return client;
-}
-
 async function main() {
   program
     .description('BTCli - A simple command line Bitcoin explorer')
     .version('0.0.1', '-v, --vers', 'output the current version');
 
   try {
-    const client = await connect();
-
-    console.log('-------------------------');
-
     program
       .command('addr <address>')
       .description('Bitcoin Address to check legacy/bech32 supported')
       .option('-V, --verbose', 'verbose output')
-      .action(async (_address, options) => {
-        await address(client, _address, options);
+      .action(async (addr, options) => {
+        await address(addr, options);
       });
 
     program
@@ -73,19 +51,17 @@ async function main() {
       .description('Bitcoin transaction')
       .option('-V, --verbose', 'verbose output')
       .action(async (tx, options) => {
-        await transaction(client, tx, options);
+        await transaction(tx, options);
       });
 
     program
       .command('block <block>')
       .description('Bitcoin block information')
       .action(async (block, options) => {
-        await transaction(client, block, options);
+        await transaction(block, options);
       });
 
     await program.parseAsync(process.argv);
-
-    await client.close();
   } catch (err) {
     console.error(err);
   }
