@@ -4,12 +4,18 @@ const chalk = require('chalk');
 const terminalLink = require('terminal-link');
 const ora = require('ora');
 
+const INFO = {
+  SEGWIT: "https://en.bitcoin.it/wiki/BIP_0173",
+  NESTED_SEGWIT: "",
+  MULTISIG: "",
+  TIMELOCK: ""
+};
+
 async function address(client, address, options) {
   try {
 
     const spinner = ora();
     spinner.spinner = "squareCorners";
-
 
     let script = bitcoin.address.toOutputScript(address);
 
@@ -24,18 +30,22 @@ async function address(client, address, options) {
     log("Address: ", chalk.magentaBright(terminalLink(address, `https://blockchair.com/bitcoin/address/${address}`)));
 
     if (decompiledScript[0] == 0)
-      log("Address Type: ", chalk.white("SegWit (Bech32/P2WPKH)"));
+      log("Address Type: ", chalk.white(terminalLink("SegWit (Bech32/P2WPKH)", INFO.SEGWIT)));
     else if (address[0] == 1)
       log("Address Type: ", chalk.white("Legacy (P2PKH)"));
     else if (address[0] == 3)
       log("Address Type: ", chalk.white("P2SH / Nested Segwit"));
 
-    log("ScriptHash: ", chalk.blue(bitcoin.script.toASM(script)));
+    log("ASM:", chalk.blue(bitcoin.script.toASM(script)));
+
+    //log("check: ", bitcoin.address.fromBech32(address))
+    // var payload = script.slice(0, -4)
+    // var checksum = script.slice(-4)
 
     if (options.verbose) {
-
-      let arr = [...script];
-      console.log("Electrum reversed script_hash: ", rScriptHash);
+      log("Script:", chalk.blue(script.toString('hex')));
+      log("Decompiled script:", decompiledScript);
+      log("Reversed Script (for Electrum):", chalk.blue(rScriptHash));
     }
 
     spinner.start();
@@ -45,10 +55,10 @@ async function address(client, address, options) {
 
     let btcBalance = balance.confirmed / BTC_UNIT;
     let btcPrice = (await axios.get('https://blockchain.info/q/24hrprice')).data;
-    
+
     spinner.stop();
     spinner.clear();
-    
+
     log('Balance:', chalk.green(btcBalance + ` BTC (~ ${(btcBalance * btcPrice).toFixed(2)} USD)`));
 
     if (options.verbose) {
