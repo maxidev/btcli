@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const fs = require('fs');
 const { program } = require('commander');
 const address = require('../scripts/address');
 const ElectrumClient = require('@codewarriorr/electrum-client-js');
@@ -7,7 +8,7 @@ const transaction = require('../scripts/transaction');
 
 global.log = console.log;
 
-// COMMON OPCODE list in hex
+// COMMON OPCODE list in hex | HEXA comparison DON'T DELETE
 const OP_0 = '00';
 const OP_1 = '51';
 const OP_2 = '52';
@@ -34,11 +35,15 @@ const OP_CHECKMULTISIG = 'ae';
 const OP_HASH160 = 'a9';
 
 async function connect() {
+
+  // Public Electrum server list: https://1209k.com/bitcoin-eye/ele.php?chain=btc
+  let servers = JSON.parse(fs.readFileSync('./servers.json', 'utf-8'));
+
   const client = new ElectrumClient(
-    'electrum1.baremetalpittsburgh.net',
-    50002,
-    'ssl'
-  );
+    servers.BLOCKSTREAM.url,
+    servers.BLOCKSTREAM.port,
+    servers.BLOCKSTREAM.proto
+  );//TODO: add a method to try to connect to another server if first one fails
 
   await client.connect();
 
@@ -68,6 +73,13 @@ async function main() {
       .description('Bitcoin transaction')
       .action(async (tx, options) => {
         await transaction(client, tx, options);
+      });
+
+    program
+      .command('block <block>')
+      .description('Bitcoin block information')
+      .action(async (block, options) => {
+        await transaction(client, block, options);
       });
 
     await program.parseAsync(process.argv);

@@ -1,0 +1,22 @@
+{
+  "BLOCKSTREAM": {
+    "url": "electrum.blockstream.info",
+    "port": 50002,
+    "proto": "ssl"
+  },
+  "BAREMETALPITTSBURGH": {
+    "url": "electrum1.baremetalpittsburgh.net",
+    "port": 50002,
+    "proto": "ssl"
+  },
+  "MEMPOOLNINJA": {
+    "url": "mempool.ninja",
+    "port": 50000,
+    "proto": "ssl"
+  },
+  "HODLERS": {
+    "url": "hodlers.beer",
+    "port": 50002,
+    "proto": "ssl"
+  }
+}
