@@ -88,7 +88,7 @@ async function address(client, address, options) {
       spinner.stop();
     }
   } catch (err) {
-    log("Error: wrong format address");
+    log(chalk.red("Error: wrong format address"));
   }
 }
 
