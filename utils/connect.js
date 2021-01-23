@@ -12,7 +12,7 @@ async function connect() {
 
   await client.connect();
 
-  log('-------------------------');
+  console.log('------------------------------------------------');
 
   return client;
 }

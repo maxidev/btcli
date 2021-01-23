@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 
-const { program } = require('commander');
-const address = require('../scripts/address');
-const transaction = require('../scripts/transaction');
-
-global.log = console.log;
+const { Option, program } = require('commander');
 
 // COMMON OPCODE list in hex | HEXA comparison DON'T DELETE
 const OP_0 = '00';
@@ -32,42 +28,25 @@ const OP_CHECKSIG = 'ac';
 const OP_CHECKMULTISIG = 'ae';
 const OP_HASH160 = 'a9';
 
-async function main() {
-  program
-    .description('BTCli - A simple command line Bitcoin explorer')
-    .version('0.0.1', '-v, --vers', 'output the current version');
-
-  try {
-    program
-      .command('addr <address>')
-      .description('Bitcoin Address to check legacy/SegWit Bech32/ nested SegWit supported')
-      .option('-e, --explorer <explorer>, Web Explorer to link: blockchair, blockchain-info, blockstream')
-      .option('-V, --verbose', 'verbose output')
-      .action(async (addr, options) => {
-        await address(addr, options);
-      });
-
-    program
-      .command('tx <transaction>')
-      .description('Bitcoin transaction')
-      .option('-V, --verbose', 'verbose output')
-      .option('-e, --explorer <explorer>, Web Explorer to link: blockchair, blockchain-info, blockstream')
-      .action(async (tx, options) => {
-        await transaction(tx, options);
-      });
-
-    program
-      .command('block <block>')
-      .description('Bitcoin block information')
-      .option('-e, --explorer <explorer>, Web Explorer to link: blockchair, blockchain-info, blockstream')
-      .action(async (block, options) => {
-        await transaction(block, options);
-      });
-
-    await program.parseAsync(process.argv);
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-main()
+program
+  .description('BTCli - A simple command line Bitcoin explorer')
+  .command('addr <address>', 'Bitcoin Address to check legacy/bech32 supported')
+  .command('tx <transaction>', 'Bitcoin transaction')
+  .command('block <block>', 'Bitcoin block information')
+  .version('0.0.1', '-v, --version', 'Output the current version')
+  .addOption(
+    new Option('-e, --explorer <explorer>, Web Explorer to link')
+      .choices(['blockchair', 'blockchain-info', 'blockstream', 'btc'])
+  )
+  .option('--tojson', 'JSON Output')
+  .option('-V, --verbose', 'Verbose output')
+  .on('option:explorer', (explorer) => {
+    process.env.explorer = explorer;
+  })
+  .on('option:tojson', () => {
+    process.env.tojson = true;
+  })
+  .on('option:verbose', () => {
+    process.env.verbose = true;
+  })
+  .parse(process.argv);
