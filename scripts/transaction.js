@@ -3,8 +3,10 @@ const terminalLink = require('terminal-link');
 const ora = require('ora');
 
 async function transaction(client, transaction, options) {
+
+  const spinner = ora();
+
   try {
-    const spinner = ora();
 
     spinner.spinner = "squareCorners";
     spinner.start();
@@ -38,7 +40,9 @@ async function transaction(client, transaction, options) {
     }
 
   } catch (err) {
-    console.log(err);
+    spinner.clear();
+    log(chalk.red("Error: tx malformed or not found (check Electrum server)"));
+    spinner.stop();
   }
 }
 
