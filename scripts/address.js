@@ -1,6 +1,7 @@
 const axios = require('axios');
 const bitcoin = require('bitcoinjs-lib');
 const chalk = require('chalk');
+const connect = require('../utils/connect');
 const terminalLink = require('terminal-link');
 const ora = require('ora');
 
@@ -11,9 +12,9 @@ const INFO = {
   TIMELOCK: ""
 };
 
-async function address(client, address, options) {
+async function address(address, options) {
   try {
-
+    const client = await connect();
     const spinner = ora();
     spinner.spinner = "squareCorners";
 
@@ -86,6 +87,7 @@ async function address(client, address, options) {
         log("ID:", terminalLink(h.tx_hash, `https://blockchair.com/bitcoin/transaction/${h.tx_hash}`));
       })
       spinner.stop();
+      await client.close();
     }
   } catch (err) {
     log(chalk.red("Error: wrong format address"));
