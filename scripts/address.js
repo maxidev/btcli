@@ -6,17 +6,17 @@ const terminalLink = require('terminal-link');
 const ora = require('ora');
 
 const INFO = {
-  SEGWIT: "https://en.bitcoin.it/wiki/BIP_0173",
-  NESTED_SEGWIT: "",
-  MULTISIG: "",
-  TIMELOCK: ""
+  SEGWIT: 'https://en.bitcoin.it/wiki/BIP_0173',
+  NESTED_SEGWIT: '',
+  MULTISIG: '',
+  TIMELOCK: ''
 };
 
 async function address(address, options) {
   try {
     const client = await connect();
     const spinner = ora();
-    spinner.spinner = "squareCorners";
+    spinner.spinner = 'squareCorners';
 
     let script = bitcoin.address.toOutputScript(address);
 
@@ -28,25 +28,25 @@ async function address(address, options) {
 
     let decompiledScript = bitcoin.script.decompile(script);
 
-    log("Address: ", chalk.magentaBright(terminalLink(address, `https://blockchair.com/bitcoin/address/${address}`)));
+    log('Address: ', chalk.magentaBright(terminalLink(address, `https://blockchair.com/bitcoin/address/${address}`)));
 
     if (decompiledScript[0] == 0)
-      log("Address Type: ", chalk.white(terminalLink("SegWit (Bech32/P2WPKH)", INFO.SEGWIT)));
+      log('Address Type: ', chalk.white(terminalLink('SegWit (Bech32/P2WPKH)', INFO.SEGWIT)));
     else if (address[0] == 1)
-      log("Address Type: ", chalk.white("Legacy (P2PKH)"));
+      log('Address Type: ', chalk.white('Legacy (P2PKH)'));
     else if (address[0] == 3)
-      log("Address Type: ", chalk.white("P2SH / Nested Segwit"));
+      log('Address Type: ', chalk.white('P2SH / Nested Segwit'));
 
-    log("ASM:", chalk.blue(bitcoin.script.toASM(script)));
+    log('ASM:', chalk.blue(bitcoin.script.toASM(script)));
 
-    //log("check: ", bitcoin.address.fromBech32(address))
+    //log('check: ', bitcoin.address.fromBech32(address))
     // var payload = script.slice(0, -4)
     // var checksum = script.slice(-4)
 
     if (options.verbose) {
-      log("Script:", chalk.blue(script.toString('hex')));
-      log("Decompiled script:", decompiledScript);
-      log("Reversed Script (for Electrum):", chalk.blue(rScriptHash));
+      log('Script:', chalk.blue(script.toString('hex')));
+      log('Decompiled script:', decompiledScript);
+      log('Reversed Script (for Electrum):', chalk.blue(rScriptHash));
     }
 
     spinner.start();
@@ -74,8 +74,8 @@ async function address(address, options) {
       spinner.clear();
       log(`UTXO(s) (${UTXOs.length})`);
       UTXOs.forEach(utxo => {
-        log("Hash: ", terminalLink(utxo.tx_hash, `https://blockchair.com/bitcoin/transaction/${utxo.tx_hash}`));
-        log("Value:", chalk.blue(utxo.value / BTC_UNIT + " BTC "));
+        log('Hash: ', terminalLink(utxo.tx_hash, `https://blockchair.com/bitcoin/transaction/${utxo.tx_hash}`));
+        log('Value:', chalk.blue(utxo.value / BTC_UNIT + ' BTC '));
       });
 
       let history = await client.blockchain_scripthash_getHistory(rScriptHash);
@@ -84,13 +84,13 @@ async function address(address, options) {
       log(`Transaction History (${history.length})`)
 
       history.forEach(h => {
-        log("ID:", terminalLink(h.tx_hash, `https://blockchair.com/bitcoin/transaction/${h.tx_hash}`));
+        log('ID:', terminalLink(h.tx_hash, `https://blockchair.com/bitcoin/transaction/${h.tx_hash}`));
       })
       spinner.stop();
       await client.close();
     }
   } catch (err) {
-    log(chalk.red("Error: wrong format address"));
+    log(chalk.red('Error: wrong format address'));
   }
 }
 
