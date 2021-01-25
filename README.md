@@ -2,6 +2,16 @@
 
 ## Commands
 
+- addr 
+- tx
+- block
+
+## Options
+
+- --verbose
+- --explorer 
+
+
 ### Examples
 
 ```
@@ -24,5 +34,4 @@ btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv --explorer blockchain-info
 
 ```
 btcli addr 1PLFNj6nuT5o44kakYxJqSq7YL7EdAHPvx (if no explorer set blockchair.com is defaulted)
-```
 ```
