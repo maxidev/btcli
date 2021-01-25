@@ -20,6 +20,13 @@ const SERVERS = [
     address: '/address/',
     tx: '/tx/',
     block: '/block/'
+  },
+  {
+    id: 'btc',
+    url: 'https://explorer.btc.com/btc',
+    address: '/address/',
+    tx: '/transaction/',
+    block: '/block/'
   }
 ];
 
@@ -35,6 +42,9 @@ function setExplorer (_explorer){
       break;
     case 'blockstream':
       SERVER = SERVERS[2];
+      break;
+    case 'btc':
+      SERVER = SERVERS[3];
       break;
     default:
       SERVER = SERVERS[0];
