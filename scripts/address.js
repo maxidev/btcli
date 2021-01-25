@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const terminalLink = require('terminal-link');
 const connect = require('../utils/connect');
 const addrUtils = require('../utils/address');
+const explorer = require('../utils/explorer');
 const ora = require('ora');
 
 /* 
@@ -20,6 +21,12 @@ async function address(address, options) {
     
     const client = await connect();
 
+
+    if(options.explorer)
+      explorer.setExplorer(options.explorer);
+    else
+      explorer.setExplorer('blockchair');
+
     let script = bitcoin.address.toOutputScript(address);
 
     let hash = bitcoin.crypto.sha256(script);
@@ -30,7 +37,7 @@ async function address(address, options) {
 
     let decompiledScript = bitcoin.script.decompile(script);
     
-    log('Address:', chalk.magentaBright(terminalLink(address, `https://blockchair.com/bitcoin/address/${address}`)));
+    log('Address:', chalk.magentaBright(terminalLink(address, explorer.addr(address))));
 
     log('Type:', chalk.white(terminalLink(addrUtils.getType(address))));
 
@@ -67,7 +74,7 @@ async function address(address, options) {
       spinner.clear();
       log(`UTXO(s) (${UTXOs.length})`);
       UTXOs.forEach(utxo => {
-        log('Hash: ', terminalLink(utxo.tx_hash, `https://blockchair.com/bitcoin/transaction/${utxo.tx_hash}`));
+        log('Hash: ', terminalLink(utxo.tx_hash, explorer.tx(utxo.tx_hash)));
         log('Value:', chalk.blue(utxo.value / BTC_UNIT + ' BTC '));
       });
 
@@ -77,7 +84,7 @@ async function address(address, options) {
       log(`Transaction History (${history.length})`)
 
       history.forEach(h => {
-        log('ID:', terminalLink(h.tx_hash, `https://blockchair.com/bitcoin/transaction/${h.tx_hash}`));
+        log('ID:', terminalLink(h.tx_hash, explorer.tx(h.tx_hash)));
       })
       spinner.stop();
     }

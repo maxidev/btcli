@@ -40,7 +40,8 @@ async function main() {
   try {
     program
       .command('addr <address>')
-      .description('Bitcoin Address to check legacy/bech32 supported')
+      .description('Bitcoin Address to check legacy/SegWit Bech32/ nested SegWit supported')
+      .option('-e, --explorer <explorer>, Web Explorer to link: blockchair, blockchain-info, blockstream')
       .option('-V, --verbose', 'verbose output')
       .action(async (addr, options) => {
         await address(addr, options);
@@ -50,6 +51,7 @@ async function main() {
       .command('tx <transaction>')
       .description('Bitcoin transaction')
       .option('-V, --verbose', 'verbose output')
+      .option('-e, --explorer <explorer>, Web Explorer to link: blockchair, blockchain-info, blockstream')
       .action(async (tx, options) => {
         await transaction(tx, options);
       });
@@ -57,6 +59,7 @@ async function main() {
     program
       .command('block <block>')
       .description('Bitcoin block information')
+      .option('-e, --explorer <explorer>, Web Explorer to link: blockchair, blockchain-info, blockstream')
       .action(async (block, options) => {
         await transaction(block, options);
       });
