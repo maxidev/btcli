@@ -1,5 +1,6 @@
 const chalk = require('chalk');
 const connect = require('../utils/connect');
+const explorer = require('../utils/explorer');
 const terminalLink = require('terminal-link');
 const ora = require('ora');
 
@@ -17,8 +18,8 @@ async function transaction(transaction, options) {
     let { txid, size, vin, vout, blockhash, confirmations, time } = tx;
 
     spinner.clear();
-    log('ID: ', chalk.blue(terminalLink(txid, `https://blockchair.com/bitcoin/transaction/${txid}`)));
-    log('Block Hash: ', chalk.green(terminalLink(blockhash, `https://blockchair.com/bitcoin/block/${blockhash}`)));
+    log('ID: ', chalk.blue(terminalLink(txid, explorer.tx(txid))));
+    log('Block Hash: ', chalk.green(terminalLink(blockhash, explorer.block(blockhash))));
     log('Confirmations: ', chalk.green(confirmations));
     log('Size: ', chalk.green(size + ' bytes'))
     const dateObject = new Date(time * 1000)
