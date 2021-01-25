@@ -15,7 +15,6 @@ function isValid(_address) {
       bitcoin.address.fromBase58Check(_address);
       return true;
     }else if(_address[0] == 'b' && _address[1] == 'c' && _address[2] && 1){
-      log(bitcoin.address.fromBech32(_address));
       bitcoin.address.fromBech32(_address);
       return true;
     }else{
