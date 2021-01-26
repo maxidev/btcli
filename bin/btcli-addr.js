@@ -84,7 +84,7 @@ async function address(address) {
     spinner.stop();
     spinner.clear();
 
-    const formattedBalance = `${btcBalance} BTC (~ ${(btcBalance * btcPrice).toFixed(2)} USD)`;
+    const formattedBalance = `${btcBalance} BTC (~ ${(btcBalance * btcPrice).toFixed(2)} USD) [1 BTC ~ ${btcPrice} USD]`;
 
     response = {
       ...response,
