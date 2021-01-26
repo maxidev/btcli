@@ -156,7 +156,7 @@ async function address(address) {
 
     await client.close();
 
-    writeOut(response);
+    writeOut(response, address);
   } catch (err) {
     console.log(chalk.red(err));
   }

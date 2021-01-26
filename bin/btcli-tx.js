@@ -70,7 +70,7 @@ async function transaction(transaction) {
 
     await client.close();
 
-    writeOut(response);
+    writeOut(response, tx);
   } catch (err) {
     spinner.clear();
 

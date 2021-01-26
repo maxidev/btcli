@@ -38,12 +38,13 @@ program
     new Option('-e, --explorer <explorer>, Web Explorer to link')
       .choices(['blockchair', 'blockchain-info', 'blockstream', 'btc'])
   )
-  .option('--tojson', 'JSON Output')
+  .option('--tojson [filename]', 'JSON Output')
   .option('-V, --verbose', 'Verbose output')
   .on('option:explorer', (explorer) => {
     process.env.explorer = explorer;
   })
-  .on('option:tojson', () => {
+  .on('option:tojson', (filename) => {
+    process.env.filename = filename;
     process.env.tojson = true;
   })
   .on('option:verbose', () => {
