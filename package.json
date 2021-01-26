@@ -29,6 +29,7 @@
     "bitcoinjs-lib": "^5.2.0",
     "chalk": "^4.1.0",
     "commander": "^7.0.0",
+    "lodash": "^4.17.20",
     "ora": "^5.3.0",
     "terminal-link": "^2.1.1"
   }
