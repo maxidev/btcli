@@ -1,3 +1,7 @@
+function getServer() {
+  return process.env.explorer || 'blockchair';
+}
+
 function isVerbose() {
   return process.env['verbose'];
 }
@@ -7,6 +11,7 @@ function shouldWriteToJSON() {
 }
 
 module.exports = {
+  getServer,
   isVerbose,
   shouldWriteToJSON
 };

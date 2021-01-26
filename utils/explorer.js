@@ -1,3 +1,4 @@
+const { getServer } = require('./args');
 
 const SERVERS = {
   blockchair: {
@@ -32,7 +33,7 @@ const SERVERS = {
 };
 
 function getExplorer() {
-  const server = process.env.explorer || 'blockchair';
+  const server = getServer();
 
   return SERVERS[server];
 }
