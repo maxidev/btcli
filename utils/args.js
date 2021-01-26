@@ -1,3 +1,9 @@
+function getFileName(fileName) {
+  const customFileName = process.env.filename;
+  
+  return customFileName === 'null' ? fileName : customFileName;
+}
+
 function getServer() {
   return process.env.explorer || 'blockchair';
 }
@@ -11,6 +17,7 @@ function shouldWriteToJSON() {
 }
 
 module.exports = {
+  getFileName,
   getServer,
   isVerbose,
   shouldWriteToJSON

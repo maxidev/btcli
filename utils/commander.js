@@ -1,4 +1,4 @@
-const { shouldWriteToJSON } = require('./args');
+const { getFileName, shouldWriteToJSON } = require('./args');
 const chalk = require('chalk');
 const fs = require('fs');
 const isUndefined = require('lodash/isUndefined');
@@ -38,12 +38,13 @@ const parseJSON = (output) => {
 }
 
 const outputConfiguration = {
-  writeOut: (output) => {
+  writeOut: (output, fileName) => {
     if (shouldWriteToJSON()) {
+      const filenameWithExt = `${getFileName(fileName)}.json`;
       const response = parseJSON(output);
 
-      fs.writeFile('out.json', JSON.stringify(response, null, 2), (err) => {
-        const file = chalk.bold('out.json');
+      fs.writeFile(filenameWithExt, JSON.stringify(response, null, 2), (err) => {
+        const file = chalk.bold(filenameWithExt);
 
         if (err) {
           console.log(chalk.red(`Error creating ${file}.`));
