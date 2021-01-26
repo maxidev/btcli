@@ -1,3 +1,4 @@
+const { formatDecompiledScript } = require('../utils/formatter');
 const { getAddressUrl, getTransactionUrl } = require('../utils/url');
 const { isVerbose } = require('../utils/args');
 const { outputConfiguration } = require('../utils/commander');
@@ -56,10 +57,7 @@ async function address(address) {
           value: script.toString('hex')
         },
         decompiledScript: {
-          raw: decompiledScript,
-          shouldDestructure: false,
-          // TODO: Improve this log
-          value: JSON.stringify(decompiledScript, null, 2)
+          ...formatDecompiledScript(decompiledScript)
         },
         reversedScript: {
           formatter: chalk.blue,
