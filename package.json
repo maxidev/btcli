@@ -6,6 +6,8 @@
     "btcli": "./bin/btcli.js"
   },
   "scripts": {
+    "pregenerate:deb": "npm install --ignore-scripts",
+    "generate:deb": "node-deb --install-strategy copy -- bin/btcli.js bin/ utils/ servers.json",
     "postinstall": "npm link btcli"
   },
   "repository": {
@@ -21,6 +23,11 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/maxidev/btcli/issues"
+  },
+  "node_deb": {
+    "entrypoints": {
+      "daemon": "bin/btcli.js"
+    }
   },
   "homepage": "https://github.com/maxidev/btcli#readme",
   "dependencies": {
