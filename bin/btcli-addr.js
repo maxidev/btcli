@@ -88,7 +88,7 @@ async function address(address) {
 
     response = {
       ...response,
-      script: {
+      Balance: {
         formatter: chalk.green,
         value: formattedBalance
       }
