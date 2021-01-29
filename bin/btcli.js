@@ -40,6 +40,7 @@ program
   )
   .option('--tojson [filename]', 'JSON Output')
   .option('-V, --verbose', 'Verbose output')
+  .option('-t, --testnet', 'Set Bitcoin testnet network')
   .on('option:explorer', (explorer) => {
     process.env.explorer = explorer;
   })
@@ -49,5 +50,8 @@ program
   })
   .on('option:verbose', () => {
     process.env.verbose = true;
+  })
+  .on('option:testnet', () => {
+    process.env.network = 'testnet';
   })
   .parse(process.argv);
