@@ -1,4 +1,5 @@
-const { getServer } = require('./args');
+const { getServer, isTestnet } = require('./args');
+const isEmpty = require('lodash/isEmpty');
 
 const SERVERS = {
   blockchair: {
@@ -31,22 +32,46 @@ const SERVERS = {
     url: 'https://explorer.btc.com/btc'
   }
 };
+const TESTNET_SERVERS = {
+  blockchair: {
+    address: '/address/',
+    block: '/block/',
+    id: 'blockchair',
+    tx: '/transaction/',
+    url: 'https://blockchair.com/bitcoin/testnet'
+  },
+  'blockchain-info': {
+    address: '/address/',
+    block: '/block/',
+    id: 'blockchain-info',
+    tx: '/tx/',
+    url: 'https://www.blockchain.com/btc-testnet'
+  },
+  blockstream: {
+    address: '/address/',
+    block: '/block/',
+    id: 'blockstream',
+    tx: '/tx/',
+    url: 'https://blockstream.info/testnet',
+    block: '/block/'
+  }
+};
 
-//TODO:
-/*
-ADD TESTNET URLs
-https://blockchair.com/bitcoin/testnet/transaction/
-https://blockchair.com/bitcoin/testnet/address/
-
-
-https://blockstream.info/testnet/tx/
-https://blockstream.info/testnet/address/
-
-https://www.blockchain.com/btc-testnet/tx/
-https://www.blockchain.com/btc-testnet/address/
-*/
 function getExplorer() {
   const server = getServer();
+
+  if (isTestnet()) {
+    const testnetServer = TESTNET_SERVERS[server];
+
+    if (isEmpty(testnetServer)) {
+      const availableTestnetServers = Object.keys(TESTNET_SERVERS);
+
+      console.log(`Available servers to use with testnet are: ${availableTestnetServers.join(', ')}.`);
+      process.exit(0);
+    }
+
+    return testnetServer;
+  }
 
   return SERVERS[server];
 }
