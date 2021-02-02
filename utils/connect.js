@@ -1,20 +1,22 @@
+const { getServer, isTestnet } = require('./args');
 const ElectrumClient = require('@codewarriorr/electrum-client-js');
 const servers = require('../servers.json');
 
 async function connect() {
   // Public Electrum server list: https://1209k.com/bitcoin-eye/ele.php?chain=btc
   // TODO: add a method to try to connect to another server if first one fails
-  const client = new ElectrumClient(
-    servers.BAREMETALPITTSBURGH.url,
-    servers.BAREMETALPITTSBURGH.port,
-    servers.BAREMETALPITTSBURGH.proto
-  );
-
-  await client.connect();
-
-  console.log('------------------------------------------------');
-
-  return client;
+  try {
+    const { url, port, proto } = isTestnet() ? servers.TESTNET : servers.BAREMETALPITTSBURGH;
+    const client = new ElectrumClient(url, port, proto);
+  
+    await client.connect();
+  
+    console.log('------------------------------------------------');
+  
+    return client;  
+  } catch (error) {
+    console.log(error);    
+  }
 }
 
 module.exports = connect;

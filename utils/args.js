@@ -8,6 +8,10 @@ function getServer() {
   return process.env.explorer || 'blockchair';
 }
 
+function isTestnet() {
+  return process.env['testnet'];
+}
+
 function isVerbose() {
   return process.env['verbose'];
 }
@@ -19,6 +23,7 @@ function shouldWriteToJSON() {
 module.exports = {
   getFileName,
   getServer,
+  isTestnet,
   isVerbose,
   shouldWriteToJSON
 };

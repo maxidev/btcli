@@ -52,6 +52,6 @@ program
     process.env.verbose = true;
   })
   .on('option:testnet', () => {
-    process.env.network = 'testnet';
+    process.env.testnet = true;
   })
   .parse(process.argv);

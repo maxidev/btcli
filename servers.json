@@ -18,5 +18,10 @@
     "url": "hodlers.beer",
     "port": 50002,
     "proto": "ssl"
+  },
+  "TESTNET": {
+    "url": "tn.not.fyi",
+    "port": 55002,
+    "proto": "ssl"
   }
 }
