@@ -58,7 +58,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
       <ul>
-        <li><a href="#not-a-wallet">BTCli is not a wallet!</a></li>
+        <li><a href="#not-a-wallet">Not a Wallet</a></li>
       </ul>
     </li>
     <li>
@@ -81,21 +81,15 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`maxidev`, `btcli`, `twitter_handle`, `email`, `BTCli - A Simple Bitcoin command-line explorer`, `BTCli - A Simple Bitcoin command-line explorer`
-
+BTCli aims to be a dev-friendly, simple Bitcoin terminal explorer to easly check for address balance, transaction information, UTXOs and more.
+It actually supports Bitcoin Mainnet and Testnet, and different web explorer can be chosen to preset the terminal links
 
 ### Built With
 
-* []()
-* []()
-* []()
+* [ElectrumX](https://electrumx.readthedocs.io/en/latest/protocol-basics.html)
+* [NodeJS](https://nodejs.org)
 
-
+### Not a Wallet
 
 <!-- GETTING STARTED -->
 ## Getting Started
