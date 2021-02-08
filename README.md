@@ -95,15 +95,7 @@ BTCli aims to be a useful command line tool for quick checking Bitcoin blockchai
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To run BTCli in your local machine from this repository
-
-### Install as a global package
-  ```sh
-  npm install -g btcli
-  ```
-
-Or
-
+To run BTCli in your local machine directly from this repository
 ### Clone the project
   ```sh
   git clone git@github.com:maxidev/btcli.git
@@ -117,11 +109,24 @@ nodejs/npm version 10+
   npm i
   ```
 
+Now you can just run:
+
+```sh
+node ./bin/btcli.js <command>
+```
+
 ### To bind the binary and use directly on the terminal
 
-   ```sh
-   npm link
+   ```js
+   //This will bind btcli commandline to js entry point
+   sudo npm link
    ```
+
+Then you can just run:
+
+```sh
+btcli <command>
+```
 
 ### To generate a .deb (Debian/Ubuntu) package 
 
@@ -137,7 +142,18 @@ Then
 npm run generate:deb
 ```
 
-This will trigger script to generate btcli_0.0.1_all.deb for easily installation.
+This will trigger script to generate btcli_0.0.1_all.deb for easily installation, on Debian/Ubuntu systems:
+
+```
+sudo dpkg -i btcli_0.0.1_all.deb
+```
+
+To install directly from NPM:
+
+### Install as a global package
+  ```sh
+  npm install -g btcli
+  ```
 
 ### Once installed, just run it from command line
 
