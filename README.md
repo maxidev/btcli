@@ -110,6 +110,22 @@ To run btcli in your local machine follow these simple steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+Address
+
+[![asciicast](https://asciinema.org/a/389942.png)](https://asciinema.org/a/389942)
+
+Tx
+
+[![asciicast](https://asciinema.org/a/389946.png)](https://asciinema.org/a/389946)
+
+Testnet
+
+[![asciicast](https://asciinema.org/a/389944.png)](https://asciinema.org/a/389944)
+
+JSON Format
+
+[![asciicast](https://asciinema.org/a/389947.png)](https://asciinema.org/a/389947)
+
 ### Commands
 
 - `addr <address>`: Bitcoin Address to check legacy/bech32 supported.
