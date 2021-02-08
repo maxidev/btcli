@@ -112,7 +112,7 @@ To run btcli in your local machine follow these simple steps.
 
 Address
 
-[![asciicast](https://asciinema.org/a/389942.png)](https://asciinema.org/a/389942)
+![asciicast](https://asciinema.org/a/389942.png)
 
 Tx
 
@@ -128,16 +128,16 @@ JSON Format
 
 ### Commands
 
-- `addr <address>`: Bitcoin Address to check legacy/bech32 supported.
-- `block <block>`: Bitcoin block information.
-- `tx <transaction>`: Bitcoin transaction.
+- `addr <address>` Bitcoin Address to check legacy/bech32 supported.
+- `block <block>` Bitcoin block information.
+- `tx <transaction>` Bitcoin transaction.
 
 ### Options
 
-- `--verbose`: Output reloaded.
-- `--explorer <explorer>`: Web explorer to link.
-- `--tojson <filename>`: Output logs in json.
-- `--testnet`: Set electrum in testnet chain.
+- `--verbose` Output reloaded.
+- `--explorer <explorer>` Web explorer to link.
+- `--tojson <filename>` Output logs in json.
+- `--testnet` Set electrum in testnet chain.
 
 ### Examples
 
