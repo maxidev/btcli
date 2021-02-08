@@ -21,8 +21,21 @@ async function transaction(transaction) {
 
     const tx = await client.blockchain_transaction_get(transaction, true);
     const { txid, size, vin, vout, blockhash, confirmations, time } = tx;
-    const dateObject = new Date(time * 1000);
-    const humanDateFormat = dateObject.toLocaleString();
+
+    let formattedConfirmations;
+    let formattedBlockhash;
+    let formattedTimestamp;
+
+    confirmations ? formattedConfirmations = confirmations : formattedConfirmations = 'Unconfirmed';
+    blockhash ? formattedBlockhash = getBlockUrl(blockhash) : formattedBlockhash = 'Unconfirmed';
+
+    if(time){
+      let dateObject = new Date(time * 1000);
+      let humanDateFormat = dateObject.toLocaleString();
+      formattedTimestamp = `${time} (${humanDateFormat} UTC)`;
+    }else{
+      formattedTimestamp = 'Unconfirmed';
+    }
 
     response = {
       id: {
@@ -33,11 +46,11 @@ async function transaction(transaction) {
       blockHash: {
         formatter: chalk.green,
         raw: blockhash,
-        value: getBlockUrl(blockhash)
+        value: formattedBlockhash
       },
       confirmations: {
         formatter: chalk.green,
-        value: confirmations
+        value: formattedConfirmations
       },
       size: {
         formatter: chalk.green,
@@ -47,7 +60,7 @@ async function transaction(transaction) {
       timestamp: {
         formatter: chalk.green,
         raw: time,
-        value: `${time} (${humanDateFormat} UTC)`
+        value: formattedTimestamp
       }
     };
 
@@ -74,10 +87,9 @@ async function transaction(transaction) {
     writeOut(response, transaction);
   } catch (err) {
     spinner.clear();
-
     console.log(chalk.red(`Error: ${err}`));
-
     spinner.stop();
+    process.exit(1);
   }
 }
 

@@ -165,7 +165,6 @@ async function address(address) {
 
     writeOut(response, address);
   } catch (err) {
-    console.log(err);
     console.log(chalk.red(err));
   }
 }
