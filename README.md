@@ -90,39 +90,69 @@ See examples below.
 
 ### Not a Wallet
 
+BTCli aims to be a useful command line tool for quick checking Bitcoin blockchain address and transactions. BTCli is not a wallet, for a good wallet experience we recommend to use one of the following:
+
+* [Specter Wallet](https://github.com/cryptoadvance/specter-desktop) (Great MultiSig focused wallet that interacts directly with Bitcoin Core)
+* [Blue Wallet](https://github.com/BlueWallet/BlueWallet) (User friendly and multisig capable Mobile wallet for Android and IOs)
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To run btcli in your local machine follow these simple steps.
+To run btcli in your local machine from this repository 
 
 ### Prerequisites
 
   ```sh
-  npm install npm@latest -g
+  npm i
   ```
 
-### Installation
+### To bind the binary and use directly on the terminal
 
    ```sh
-   npm install btcli -g
+   npm run postinstall
    ```
 
+### Then just check from the command line
+
+```
+btcli help
+
+Usage: btcli [options] [command]
+
+BTCli - A simple command line Bitcoin explorer
+
+Options:
+  -v, --version                                    Output the current version
+  -e, --explorer <explorer>, Web Explorer to link   (choices: "blockchair", "blockchain-info", "blockstream", "btc")
+  --tojson [filename]                              JSON Output
+  -V, --verbose                                    Verbose output
+  -t, --testnet                                    Set Bitcoin testnet network
+  -h, --help                                       display help for command
+
+Commands:
+  addr <address>                                   Bitcoin Address to check legacy/bech32 supported
+  block <height>                                   Bitcoin block information
+  tx <transaction>                                 Bitcoin transaction
+  help [command]                                   display help for command
+```
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Address
+btcli _addr_ command usage 
 
 ![asciicast](https://asciinema.org/a/389942.png)
 
-Tx
+btcli _tx_ command usage 
 
 [![asciicast](https://asciinema.org/a/389946.png)](https://asciinema.org/a/389946)
 
 Testnet
+btcli testnet option usage 
 
 [![asciicast](https://asciinema.org/a/389944.png)](https://asciinema.org/a/389944)
 
 JSON Format
+btcli _tojson_ option usage 
 
 [![asciicast](https://asciinema.org/a/389947.png)](https://asciinema.org/a/389947)
 
@@ -137,7 +167,7 @@ JSON Format
 - `--verbose` Output reloaded.
 - `--explorer <explorer>` Web explorer to link.
 - `--tojson <filename>` Output logs in json.
-- `--testnet` Set electrum in testnet chain.
+- `--testnet` Set tesnet chain for querying servers
 
 ### Examples
 
@@ -146,11 +176,7 @@ btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv
 ```
 
 ```
-btcli block 0
-```
-
-```
-btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c
+btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c --verbose
 ```
 
 #### Changing web explorer link
@@ -172,15 +198,17 @@ btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c --tojs
 #### In testnet
 
 ```
-btcli addr tb1qxp7yuclrt65cvawfnpvgg3u8p2nf8qhx7k9jzf --testnet
+btcli addr tb1qxp7yuclrt65cvawfnpvgg3u8p2nf8qhx7k9jzf --verbose --testnet
 ```
 
 <!-- ROADMAP -->
 ## Roadmap
 
+We have lots of ideas to convert BTCli into a swiss-army knife tool for devs and enthusiast alike. This is a side project and collaboration is much needed. Feel free to open some issue to propose a new feature.
+
 See the [open issues](https://github.com/maxidev/btcli/issues) for a list of proposed features (and known issues).
 
-
+Also, consider help us by donating some sats and buy us some coffee!
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -205,7 +233,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Maxi Dev - [@op_hash160](https://twitter.com/op_hash160)
+Agustin Fiorenza - [@agufiorenza](https://twitter.com/agufiorenza)
 
 Project Link: [https://github.com/maxidev/btcli](https://github.com/maxidev/btcli)
 
@@ -214,12 +243,9 @@ Project Link: [https://github.com/maxidev/btcli](https://github.com/maxidev/btcl
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-* []()
-* []()
-
-
-
+This project heavly relies on [ElectrumX](https://electrumx.readthedocs.io/en/latest/protocol-basics.html) public [servers](https://1209k.com/bitcoin-eye/ele.php?chain=btc)
+Consider running your own sever or donate to public server maintainers. 
+We purposedly left the ElectrumX Public Server connection banner on BTCli to support server owner.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
