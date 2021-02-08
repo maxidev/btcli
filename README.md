@@ -113,8 +113,8 @@ To run btcli in your local machine follow these simple steps.
 ### Commands
 
 - `addr <address>`: Bitcoin Address to check legacy/bech32 supported.
-- `tx <transaction>`: Bitcoin transaction.
 - `block <block>`: Bitcoin block information.
+- `tx <transaction>`: Bitcoin transaction.
 
 ### Options
 
@@ -130,7 +130,7 @@ btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv
 ```
 
 ```
-btcli block 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv
+btcli block 0
 ```
 
 ```
