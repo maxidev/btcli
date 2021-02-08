@@ -253,8 +253,6 @@ We have lots of ideas to convert BTCli into a swiss-army knife tool for devs and
 
 See the [open issues](https://github.com/maxidev/btcli/issues) for a list of proposed features (and known issues).
 
-Also, consider help us by donating some sats and buy us some coffee!
-
 <!-- CONTRIBUTING -->
 ## Contributing
 
