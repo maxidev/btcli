@@ -164,27 +164,24 @@ Commands:
 ```
 <!-- USAGE EXAMPLES -->
 ## Usage
-test
-
-![alt text](examples/parrot.svg)
 
 btcli _addr_ command usage 
 
-![asciicast](https://asciinema.org/a/389942.png)
+![BTCli addr mainnet explorer](screencast/addr-main.svg)
 
 btcli _tx_ command usage 
 
-[![asciicast](https://asciinema.org/a/389946.png)](https://asciinema.org/a/389946)
+![BTCli ex explorer](screencast/tx-explorer.svg)
 
 Testnet
 btcli testnet option usage 
 
-[![asciicast](https://asciinema.org/a/389944.png)](https://asciinema.org/a/389944)
+![BTCli testnet addr](screencast/addr-testnet.svg)
 
 JSON Format
 btcli _tojson_ option usage 
 
-[![asciicast](https://asciinema.org/a/389947.png)](https://asciinema.org/a/389947)
+![BTCli json export](screencast/json-export.svg)
 
 ### Commands
 
