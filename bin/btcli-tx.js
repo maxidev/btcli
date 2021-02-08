@@ -87,10 +87,9 @@ async function transaction(transaction) {
     writeOut(response, transaction);
   } catch (err) {
     spinner.clear();
-    console.log(err);
     console.log(chalk.red(`Error: ${err}`));
-
     spinner.stop();
+    process.exit(1);
   }
 }
 
