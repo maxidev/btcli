@@ -234,6 +234,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 
 Maxi Dev - [@op_hash160](https://twitter.com/op_hash160)
+
 Agustin Fiorenza - [@agufiorenza](https://twitter.com/agufiorenza)
 
 Project Link: [https://github.com/maxidev/btcli](https://github.com/maxidev/btcli)
@@ -261,4 +262,3 @@ We purposedly left the ElectrumX Public Server connection banner on BTCli to sup
 [license-shield]: https://img.shields.io/github/license/maxidev/repo.svg?style=for-the-badge
 [license-url]: https://github.com/maxidev/btcli/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/maxidev
