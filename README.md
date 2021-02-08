@@ -99,6 +99,8 @@ To run btcli in your local machine from this repository
 
 ### Prerequisites
 
+nodejs/npm version 10+
+
   ```sh
   npm i
   ```
@@ -109,7 +111,23 @@ To run btcli in your local machine from this repository
    npm run postinstall
    ```
 
-### Then just check from the command line
+### To generate a .deb (Debian/Ubuntu) package 
+
+First install dependencies by running
+
+```sh
+sudo npm install -g node-deb
+sudo apt-get install jq
+```
+Then
+
+```
+npm run generate:deb
+```
+
+This will trigger script to generate btcli_0.0.1_all.deb for easily installation.
+
+### Once installed, just run it from command line
 
 ```
 btcli help
@@ -155,8 +173,8 @@ btcli _tojson_ option usage
 
 ### Commands
 
-- `addr <address>` Bitcoin Address to check legacy/bech32 supported.
-- `block <block>` Bitcoin block information.
+- `addr <address>` Bitcoin Address to check legacy P2PKH/P2SH/P2WPKH (SegWit Bech32) supported.
+- `block <block>` Bitcoin block information (under development)
 - `tx <transaction>` Bitcoin transaction.
 
 ### Options
