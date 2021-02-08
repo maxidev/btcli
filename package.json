@@ -6,9 +6,8 @@
     "btcli": "./bin/btcli.js"
   },
   "scripts": {
-    "pregenerate:deb": "npm install --ignore-scripts",
-    "generate:deb": "node-deb --install-strategy copy -- bin/btcli.js bin/ utils/ servers.json",
-    "postinstall": "npm link btcli"
+    "pregenerate:deb": "npm install",
+    "generate:deb": "node-deb --install-strategy copy -- bin/btcli.js bin/ utils/ servers.json"
   },
   "repository": {
     "type": "git",
