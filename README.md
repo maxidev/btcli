@@ -94,37 +94,71 @@ It actually supports Bitcoin Mainnet and Testnet, and different web explorer can
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+To run btcli in your local machine follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
   ```sh
   npm install npm@latest -g
   ```
 
 ### Installation
 
-1. Clone the repo
    ```sh
-   git clone https://github.com/maxidev/btcli.git
+   npm install btcli -g
    ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-
-
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+### Commands
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+- `addr <address>`: Bitcoin Address to check legacy/bech32 supported.
+- `tx <transaction>`: Bitcoin transaction.
+- `block <block>`: Bitcoin block information.
 
+### Options
 
+- `--verbose`: Output reloaded.
+- `--explorer <explorer>`: Web explorer to link.
+- `--tojson <filename>`: Output logs in json.
+- `--testnet`: Set electrum in testnet chain.
+
+### Examples
+
+```
+btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv
+```
+
+```
+btcli block 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv
+```
+
+```
+btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c
+```
+
+#### Changing web explorer link
+
+```
+btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c -e blockstream
+```
+
+```
+btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv --explorer blockchain-info
+```
+
+#### JSON output
+
+```
+btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c --tojson [filename]
+```
+
+#### In testnet
+
+```
+btcli addr tb1qxp7yuclrt65cvawfnpvgg3u8p2nf8qhx7k9jzf --testnet
+```
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -187,50 +221,3 @@ Project Link: [https://github.com/maxidev/btcli](https://github.com/maxidev/btcl
 [license-url]: https://github.com/maxidev/btcli/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/maxidev
-
-
-
-# btcli - Simple command line Bitcoin explorer
-
-## Commands
-
-- addr 
-- tx
-- block
-
-## Options
-
-- --verbose
-- --explorer 
-- --tojson
-
-
-### Examples
-
-```
-btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c
-```
-
-```
-btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv
-```
-
-#### Changing web explorer link
-
-```
-btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c -e blockstream
-```
-
-```
-btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv --explorer blockchain-info
-```
-
-```
-btcli addr 1PLFNj6nuT5o44kakYxJqSq7YL7EdAHPvx (if no explorer set blockchair.com is defaulted)
-```
-
-#### JSON output
-
-```
-btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c --tojson [filename]
-```
