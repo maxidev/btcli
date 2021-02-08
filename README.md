@@ -32,14 +32,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/maxidev/btcli">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
   <h3 align="center">BTCli - A Simple Bitcoin command-line explorer</h3>
-
   <p align="center">
-    <br />
     <a href="https://github.com/maxidev/btcli/issues">Report Bug</a>
     ·
     <a href="https://github.com/maxidev/btcli/issues">Request Feature</a>
@@ -82,7 +77,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 BTCli aims to be a dev-friendly, simple Bitcoin terminal explorer to easly check for address balance, transaction information, UTXOs and more.
-It actually supports Bitcoin Mainnet and Testnet, and different web explorer can be chosen to preset the terminal links
+It actually supports Bitcoin Mainnet and Testnet, and different web explorer can be chosen to preset the terminal links.
+
+*BTCli is NOT a wallet!*
+
+See examples below.
 
 ### Built With
 
