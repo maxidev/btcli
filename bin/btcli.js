@@ -33,7 +33,7 @@ program
   .command('addr <address>', 'Bitcoin Address to check legacy/bech32 supported')
   .command('tx <transaction>', 'Bitcoin transaction')
   .command('block <height>', 'Bitcoin block information')
-  .version('0.1', '-v, --version', 'Output the current version')
+  .version('0.0.1', '-v, --version', 'Output the current version')
   .addOption(
     new Option('-e, --explorer <explorer>, Web Explorer to link')
       .choices(['blockchair', 'blockchain-info', 'blockstream', 'btc'])
