@@ -90,12 +90,12 @@ See examples below.
 BTCli aims to be a useful command line tool for quick checking Bitcoin blockchain address and transactions. BTCli is not a wallet, for a good wallet experience we recommend to use one of the following:
 
 * [Specter Wallet](https://github.com/cryptoadvance/specter-desktop) (Great MultiSig focused wallet that interacts directly with Bitcoin Core)
-* [Blue Wallet](https://github.com/BlueWallet/BlueWallet) (User friendly and multisig capable Mobile wallet for Android and IOs)
+* [Blue Wallet](https://github.com/BlueWallet/BlueWallet) (User friendly and multisig capable Mobile wallet for Android and iOS)
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To run btcli in your local machine from this repository
+To run BTCli in your local machine from this repository
 
 ### Install as a global package
   ```sh
@@ -202,34 +202,34 @@ btcli _tojson_ option usage
 ### Examples
 
 ```js
-//Simple Bitcoin mainnet legacy address balance check
+// Simple Bitcoin mainnet legacy address balance check
 btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv
 ```
 
 ```js
-//Transaction inspect with verbose option to output inputs/outputs info
+// Transaction inspect with verbose option to output inputs/outputs info
 btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c --verbose
 ```
 
 ```js
-//Inspect transaction changing the default web-explorer for output links
+// Inspect transaction changing the default web-explorer for output links
 btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c -e blockstream
 ```
 
 ```js
-//Address balance check with verbose option to out scripts and changing default web explorer
+// Address balance check with verbose option to out scripts and changing default web explorer
 btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv --explorer blockchain-info
 ```
 
 
 ```js
-//Exporting the transaction inspect to my_tx JSON file.¿
+// Exporting the transaction inspect to my_tx JSON file.
 btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c --tojson my_tx
 ```
 
 
 ```js
-//Inspecting testnet address with verbose output
+// Inspecting testnet address with verbose output
 btcli addr tb1qxp7yuclrt65cvawfnpvgg3u8p2nf8qhx7k9jzf --verbose --testnet
 ```
 
@@ -276,9 +276,9 @@ Project Link: [https://github.com/maxidev/btcli](https://github.com/maxidev/btcl
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-This project heavly relies on [ElectrumX](https://electrumx.readthedocs.io/en/latest/protocol-basics.html) public [servers](https://1209k.com/bitcoin-eye/ele.php?chain=btc)
+This project heavily relies on [ElectrumX](https://electrumx.readthedocs.io/en/latest/protocol-basics.html) public [servers](https://1209k.com/bitcoin-eye/ele.php?chain=btc)
 Consider running your own sever or donate to public server maintainers. 
-We purposedly left the ElectrumX Public Server connection banner on BTCli to support server owner.
+We purposely left the ElectrumX Public Server connection banner on BTCli to support server owner.
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
