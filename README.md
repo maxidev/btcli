@@ -152,6 +152,9 @@ Commands:
 ```
 <!-- USAGE EXAMPLES -->
 ## Usage
+test
+
+![alt text](examples/parrot.svg)
 
 btcli _addr_ command usage 
 
@@ -174,7 +177,7 @@ btcli _tojson_ option usage
 ### Commands
 
 - `addr <address>` Bitcoin Address to check legacy P2PKH/P2SH/P2WPKH (SegWit Bech32) supported.
-- `block <block>` Bitcoin block information (under development)
+- `block <height>` Bitcoin block information (under development)
 - `tx <transaction>` Bitcoin transaction.
 
 ### Options
