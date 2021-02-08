@@ -1,6 +1,6 @@
 {
   "name": "btcli",
-  "version": "0.1",
+  "version": "0.0.1",
   "description": "A simple command line Bitcoin explorer",
   "bin": {
     "btcli": "./bin/btcli.js"
