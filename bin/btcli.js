@@ -31,8 +31,8 @@ const OP_HASH160 = 'a9';
 program
   .description('BTCli - A simple command line Bitcoin explorer')
   .command('addr <address>', 'Bitcoin Address to check legacy/bech32 supported')
-  .command('tx <transaction>', 'Bitcoin transaction')
   .command('block <height>', 'Bitcoin block information')
+  .command('tx <transaction>', 'Bitcoin transaction')
   .version('0.0.1', '-v, --version', 'Output the current version')
   .addOption(
     new Option('-e, --explorer <explorer>, Web Explorer to link')
