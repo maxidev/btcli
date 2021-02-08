@@ -302,14 +302,14 @@ Consider buying us a coffee if you find BTCli useful
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/maxidev/repo.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/maxidev/btcli.svg?style=for-the-badge
 [contributors-url]: https://github.com/maxidev/btcli/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/maxidev/repo.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/maxidev/btcli.svg?style=for-the-badge
 [forks-url]: https://github.com/maxidev/btcli/network/members
-[stars-shield]: https://img.shields.io/github/stars/maxidev/repo.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/maxidev/btcli.svg?style=for-the-badge
 [stars-url]: https://github.com/maxidev/btcli/stargazers
-[issues-shield]: https://img.shields.io/github/issues/maxidev/repo.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/maxidev/btcli.svg?style=for-the-badge
 [issues-url]: https://github.com/maxidev/btcli/issues
-[license-shield]: https://img.shields.io/github/license/maxidev/repo.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/maxidev/btcli.svg?style=for-the-badge
 [license-url]: https://github.com/maxidev/btcli/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
