@@ -293,6 +293,12 @@ This project heavily relies on [ElectrumX](https://electrumx.readthedocs.io/en/l
 Consider running your own sever or donate to public server maintainers. 
 We purposely left the ElectrumX Public Server connection banner on BTCli to support server owner.
 
+## Support us!
+
+Consider buying us a coffee if you find BTCli useful
+
+[bc1qldcc5k2zaz4f4d79m07zgh9nc2gr7mf0nr0g8t](https://blockchair.com/bitcoin/address/bc1qldcc5k2zaz4f4d79m07zgh9nc2gr7mf0nr0g8t)
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
