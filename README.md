@@ -186,33 +186,35 @@ btcli _tojson_ option usage
 
 ### Examples
 
-```
+```js
+//Simple Bitcoin mainnet legacy address balance check
 btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv
 ```
 
-```
+```js
+//Transaction inspect with verbose option to output inputs/outputs info
 btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c --verbose
 ```
 
-#### Changing web explorer link
-
-```
+```js
+//Inspect transaction changing the default web-explorer for output links
 btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c -e blockstream
 ```
 
-```
+```js
+//Address balance check with verbose option to out scripts and changing default web explorer
 btcli addr 12pPx8Frg5wTQmprxBLoi8R3mdmFYjmCfv --explorer blockchain-info
 ```
 
-#### JSON output
 
-```
-btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c --tojson [filename]
+```js
+//Exporting the transaction inspect to my_tx JSON file.¿
+btcli tx aafe3d76554df980482ec092630ba957dda6458c40178dab54fa44443706808c --tojson my_tx
 ```
 
-#### In testnet
 
-```
+```js
+//Inspecting testnet address with verbose output
 btcli addr tb1qxp7yuclrt65cvawfnpvgg3u8p2nf8qhx7k9jzf --verbose --testnet
 ```
 
