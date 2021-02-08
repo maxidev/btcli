@@ -52,6 +52,7 @@ async function transaction(transaction) {
     };
 
     if (verbose) {
+      util.inspect.defaultOptions.depth = null;
       response = {
         ...response,
         inputs: {
@@ -74,7 +75,7 @@ async function transaction(transaction) {
   } catch (err) {
     spinner.clear();
 
-    console.log(chalk.red('Error: tx malformed or not found (check Electrum server)'));
+    console.log(chalk.red(`Error: ${err}`));
 
     spinner.stop();
   }

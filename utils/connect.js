@@ -11,7 +11,7 @@ async function connect() {
   try {
     const { url, port, proto } = isTestnet() ? servers.TESTNET : servers.BAREMETALPITTSBURGH;
     const client = new ElectrumClient(url, port, proto);
-    spinner.start();
+    spinner.start('Connecting ElectrumX server ...\n');
     await client.connect();
   
     console.log('------------------------------------------------');
