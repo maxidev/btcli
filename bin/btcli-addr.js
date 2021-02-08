@@ -1,6 +1,6 @@
-const { formatDecompiledScript } = require('../utils/formatter');
+//const { formatDecompiledScript } = require('../utils/formatter');
 const { getAddressUrl, getTransactionUrl } = require('../utils/url');
-const { isVerbose } = require('../utils/args');
+const { isVerbose, isTestnet } = require('../utils/args');
 const { outputConfiguration } = require('../utils/commander');
 const { program } = require('commander');
 const addressUtils = require('../utils/address');
@@ -11,12 +11,16 @@ const connect = require('../utils/connect');
 const ora = require('ora');
 
 async function address(address) {
+
   const { writeOut } = program.configureOutput();
   const spinner = ora();
   const verbose = isVerbose();
   let response = {};
-
+  let network = bitcoin.networks.bitcoin;
+  
   try {
+    if(isTestnet())
+      network = bitcoin.networks.testnet;
     if (!addressUtils.isValid(address)) {
       throw new Error('Wrong address / Invalid format');
     }
@@ -25,7 +29,7 @@ async function address(address) {
 
     spinner.spinner = 'squareCorners';
 
-    const script = bitcoin.address.toOutputScript(address);
+    const script = bitcoin.address.toOutputScript(address, network);
     const hash = bitcoin.crypto.sha256(script);
     const reversedHash = new Buffer.from(hash.reverse());
     const rScriptHash = reversedHash.toString('hex');
@@ -56,9 +60,9 @@ async function address(address) {
           formatter: chalk.blue,
           value: script.toString('hex')
         },
-        decompiledScript: {
-          ...formatDecompiledScript(decompiledScript)
-        },
+        // decompiledScript: {
+        //   ...formatDecompiledScript(decompiledScript)
+        // },
         reversedScript: {
           formatter: chalk.blue,
           title: 'Reversed Script (for Electrum)',
@@ -74,23 +78,26 @@ async function address(address) {
     let btcBalance = balance.confirmed / BTC_UNIT;
     let btcPrice = 0;
 
+    let finalBalance;
+
     /*
       Query for USD balance only if balance var shows value greather than 0
     */
     if (balance.confirmed > 0) {
       btcPrice = (await axios.get('https://blockchain.info/q/24hrprice')).data;
+      finalBalance = `${btcBalance} BTC (~ ${(btcBalance * btcPrice).toFixed(2)} USD) [1 BTC ~ ${btcPrice} USD]`;
     }
 
     spinner.stop();
     spinner.clear();
 
-    const formattedBalance = `${btcBalance} BTC (~ ${(btcBalance * btcPrice).toFixed(2)} USD) [1 BTC ~ ${btcPrice} USD]`;
+    finalBalance = `${btcBalance} BTC (~ ${(btcBalance * btcPrice).toFixed(2)} USD)`;
 
     response = {
       ...response,
       Balance: {
         formatter: chalk.green,
-        value: formattedBalance
+        value: finalBalance
       }
     };
 
@@ -99,20 +106,20 @@ async function address(address) {
 
       const history = await client.blockchain_scripthash_getHistory(rScriptHash);
       const UTXO = await client.blockchain_scripthash_listunspent(rScriptHash);
-
-      const UTXOS = UTXO.reduce((accumulator, { tx_hash, value }) => {
-        const _value = `${value / BTC_UNIT} BTC`;
+      
+      const UTXOS = UTXO.reduce((accumulator, { tx_hash, value, tx_pos }) => {
+        const _value = `${value} Sats`;
 
         return {
           ...accumulator,
           [tx_hash]: {
             shouldDestructure: true,
-            title: tx_hash,
+            title: `Tx Id: ${getTransactionUrl(tx_hash)}`,
             value: {
-              hash: {
-                raw: tx_hash,
-                title: 'Id',
-                value: getTransactionUrl(tx_hash)
+              pos: {
+                formatter: chalk.white,
+                title: 'vout',
+                value: tx_pos
               },
               value: {
                 formatter: chalk.blue,
@@ -158,6 +165,7 @@ async function address(address) {
 
     writeOut(response, address);
   } catch (err) {
+    console.log(err);
     console.log(chalk.red(err));
   }
 }
