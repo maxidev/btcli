@@ -148,6 +148,10 @@ This will trigger script to generate btcli_0.0.1_all.deb for easily installation
 sudo dpkg -i btcli_0.0.1_all.deb
 ```
 
+Alternatively pre-generated deb package can be found in our Github release page
+
+[btcli_0.1.0.deb](https://github.com/maxidev/btcli/releases/download/v0.1.0/btcli_0.1.0.deb)
+
 To install directly from NPM:
 
 ### Install as a global package
