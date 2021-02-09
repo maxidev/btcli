@@ -191,17 +191,17 @@ btcli _addr_ command usage
 
 btcli _tx_ command usage 
 
-![BTCli ex explorer](screencast/tx-explorer.svg)
+[![asciicast](https://asciinema.org/a/389946.svg)](https://asciinema.org/a/389946)
 
 Testnet
 btcli testnet option usage 
 
-![BTCli testnet addr](screencast/addr-testnet.svg)
+[![asciicast](https://asciinema.org/a/389944.svg)](https://asciinema.org/a/389944)
 
 JSON Format
 btcli _tojson_ option usage 
 
-![BTCli json export](screencast/json-export.svg)
+[![asciicast](https://asciinema.org/a/389947.svg)](https://asciinema.org/a/389947)
 
 ### Commands
 
