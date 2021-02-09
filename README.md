@@ -187,7 +187,7 @@ Commands:
 
 btcli _addr_ command usage 
 
-![BTCli addr mainnet explorer](screencast/addr-main.svg)
+[![asciicast](https://asciinema.org/a/389942.svg)](https://asciinema.org/a/389942)
 
 btcli _tx_ command usage 
 
