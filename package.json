@@ -1,9 +1,9 @@
 {
   "name": "btcli",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple command line Bitcoin explorer",
   "bin": {
-    "btcli": "./bin/btcli.js"
+    "btcli": "bin/btcli.js"
   },
   "scripts": {
     "pregenerate:deb": "npm install",
