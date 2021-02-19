@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const { Option, program } = require('commander');
+const { version } = require('../package.json');
 
 // COMMON OPCODE list in hex | HEXA comparison DON'T DELETE
 const OP_0 = '00';
@@ -33,7 +34,7 @@ program
   .command('addr <address>', 'Bitcoin Address to check legacy/bech32 supported')
   .command('block <height>', 'Bitcoin block information')
   .command('tx <transaction>', 'Bitcoin transaction')
-  .version('0.0.1', '-v, --version', 'Output the current version')
+  .version(version, '-v, --version', 'Output the current version')
   .addOption(
     new Option('-e, --explorer <explorer>, Web Explorer to link')
       .choices(['blockchair', 'blockchain-info', 'blockstream', 'btc'])
